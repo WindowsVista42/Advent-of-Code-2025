@@ -1,4 +1,4 @@
-let file = "input.txt"
+let file = "input/day1/input.txt"
 
 type state = {
   mutable nzero : int;
