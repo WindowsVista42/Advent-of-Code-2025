@@ -53,9 +53,7 @@ let () =
     let windows = windows3 line in
     let prev_windows = windows3 !prev_line in
 
-    windows
-    |> List.to_seq
-    |> Seq.zip (List.to_seq prev_windows)
+    Seq.zip (List.to_seq prev_windows) (List.to_seq windows)
     |> Seq.iter (fun ((p_1, p0, p1), (c_1, c0, c1)) ->
       (match (p_1, p0, p1, c_1, c0, c1) with
       | (_, Start, _, _, Empty, _) ->

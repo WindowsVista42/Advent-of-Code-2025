@@ -34,14 +34,6 @@ let rec windows3 = function
     (a, b, c) :: windows3 (List.tl lst)
   | _ -> []
 
-let windows6x6 line prev_line =
-  let windows = windows3 line in
-  let prev_windows = windows3 prev_line in
-
-  windows
-  |> List.to_seq
-  |> Seq.zip (List.to_seq prev_windows)
-
 let () =
   let grid = read_data file in
 
@@ -58,7 +50,10 @@ let () =
   let simulated_grid = List.map (fun line ->
     let new_line = ref [] in
 
-    windows6x6 line !prev_line
+    let line_windows = windows3 line in
+    let prev_line_windows = windows3 !prev_line in
+
+    Seq.zip (List.to_seq prev_line_windows) (List.to_seq line_windows)
     |> Seq.iter (fun ((p_1, p0, p1), (c_1, c0, c1)) ->
       (* Special rules for simulating the beam paths *)
       (match (p_1, p0, p1, c_1, c0, c1) with
