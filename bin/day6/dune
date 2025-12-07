@@ -1,0 +1,9 @@
+(executable
+ (name day6_part1)
+ (public_name day6.part1)
+ (modules day6_part1))
+
+(executable
+ (name day6_part2)
+ (public_name day6.part2)
+ (modules day6_part2))
